@@ -31,7 +31,7 @@ entrance_time = 0
 last_time = last_seen(aim)
 
 msg_counter = 0
-msg_counter_day = 34
+msg_counter_day = 37
 msg_with_ann = 0
 msg_with_madina = 0
 
@@ -53,7 +53,6 @@ while True:
                 if abs(status-last_seen('ann_mironovaa')) <= 60: msg_with_ann += 1
                 if abs(status-last_seen('madinca_amirova')) <= 60: msg_with_madina += 1
                 msg_counter += 1
-                print(f'Message {msg_with_ann}')
                 print(f'Message {msg_counter}')
                 last_time = status
                 tries = 0
@@ -74,7 +73,7 @@ while True:
                         flag = 0
                     sleep(1)
 
-                elif temp_stat == 'online' and tries == 60:
+                elif temp_stat == 'online' and tries == 120:
                     temp_stat = 'offline'
                     sess = last_time - entrance_time
                     if msg_counter > 0: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}\nС Аней ~~ {round(msg_with_ann/msg_counter, 2)*100}%\nС Мадиной ~~ {round(msg_with_madina/msg_counter, 2)*100}%'
@@ -92,7 +91,7 @@ while True:
                     msg_with_madina = 0
                     sleep(1)
                 
-                elif temp_stat == 'online' and tries < 60:
+                elif temp_stat == 'online' and tries < 120:
                     tries += 1
                     print(f'Online {tries}')
                     sleep(1)
