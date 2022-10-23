@@ -3,6 +3,7 @@ from datetime import datetime, timezone, timedelta
 from time import sleep
 import vk_api
 
+
 flag = 0
 aim = 'naatik'
 temp_stat = 'offline'
@@ -30,7 +31,7 @@ entrance_time = 0
 last_time = last_seen(aim)
 
 msg_counter = 0
-msg_counter_day = 0
+msg_counter_day = 20
 msg_with_ann = 0
 msg_with_madina = 0
 
@@ -75,7 +76,7 @@ while True:
                 elif temp_stat == 'online' and tries == 60:
                     temp_stat = 'offline'
                     sess = last_time - entrance_time
-                    if msg_counter > 0: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}\nС Аней ~~ {msg_with_ann//msg_counter*100}%\nС мадиной ~~ {msg_with_madina//msg_counter*100}%'
+                    if msg_counter > 0: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}\nС Аней ~~ {round(msg_with_ann/msg_counter, 2)*100}%\nС Мадиной ~~ {round(msg_with_madina/msg_counter)*100}%'
                     else: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}'
                     delete_msg(deleted_id)
                     send_msg(msg)
