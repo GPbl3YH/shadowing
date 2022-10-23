@@ -12,16 +12,16 @@ session = vk_api.vk_api.VkApi(login='79150470373', password='Prytkov2002', token
 
 
 def delete_msg(id):
-    requests.get(f"https://api.telegram.org/bot1226847744:AAHLU7TXkxe13r0LEwjeQ1dFUVk0kMB56Os/deleteMessage?chat_id=394143446&message_id={id}")
+    requests.get(f"https://api.telegram.org/bot5505845559:AAFeuHYprGavV1ELhE-FO8jU6Yag5gFCfsE/deleteMessage?chat_id=394143446&message_id={id}")
 
 def get_status(id):
     return session.method('users.get', values={'user_ids':id, 'fields':'online'})
 
 def pinned_msg(id):
-    requests.get(f"https://api.telegram.org/bot1226847744:AAHLU7TXkxe13r0LEwjeQ1dFUVk0kMB56Os/pinChatMessage?chat_id=394143446&message_id={id}")
+    requests.get(f"https://api.telegram.org/bot5505845559:AAFeuHYprGavV1ELhE-FO8jU6Yag5gFCfsE/pinChatMessage?chat_id=394143446&message_id={id}")
 
 def send_msg(message):
-    req = requests.post("https://api.telegram.org/bot1226847744:AAHLU7TXkxe13r0LEwjeQ1dFUVk0kMB56Os/sendMessage?chat_id=394143446"+f"&text={message}")
+    req = requests.post("https://api.telegram.org/bot5505845559:AAFeuHYprGavV1ELhE-FO8jU6Yag5gFCfsE/sendMessage?chat_id=394143446"+f"&text={message}")
     return req.json()['result']['message_id']
 
 def last_seen(id):
@@ -31,7 +31,7 @@ entrance_time = 0
 last_time = last_seen(aim)
 
 msg_counter = 0
-msg_counter_day = 20
+msg_counter_day = 34
 msg_with_ann = 0
 msg_with_madina = 0
 
@@ -48,15 +48,16 @@ while True:
                 temp_stat = 'online'
                 print('Entrance')
                 last_time = status
-                sleep(2)
+                sleep(1)
             if status > last_time and temp_stat == 'online':
                 if abs(status-last_seen('ann_mironovaa')) <= 60: msg_with_ann += 1
                 if abs(status-last_seen('madinca_amirova')) <= 60: msg_with_madina += 1
                 msg_counter += 1
+                print(f'Message {msg_with_ann}')
                 print(f'Message {msg_counter}')
                 last_time = status
                 tries = 0
-                sleep(2)
+                sleep(1)
             
 
             elif status == last_time:
@@ -71,12 +72,12 @@ while True:
 
                     if datetime.now(offset).hour == 5 and flag == 1:
                         flag = 0
-                    sleep(2)
+                    sleep(1)
 
                 elif temp_stat == 'online' and tries == 60:
                     temp_stat = 'offline'
                     sess = last_time - entrance_time
-                    if msg_counter > 0: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}\nС Аней ~~ {round(msg_with_ann/msg_counter, 2)*100}%\nС Мадиной ~~ {round(msg_with_madina/msg_counter)*100}%'
+                    if msg_counter > 0: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}\nС Аней ~~ {round(msg_with_ann/msg_counter, 2)*100}%\nС Мадиной ~~ {round(msg_with_madina/msg_counter, 2)*100}%'
                     else: msg = f'Вход - {datetime.utcfromtimestamp(entrance_time+10800).strftime("%H:%M:%S")}\nВыход - {datetime.utcfromtimestamp(last_time+10800).strftime("%H:%M:%S")}\nПродолжительность - {sess//60} минут(ы) {sess%60} секунд(ы)\n~Количество сообщений - {msg_counter}'
                     delete_msg(deleted_id)
                     send_msg(msg)
@@ -89,12 +90,12 @@ while True:
                     msg_counter = 0
                     msg_with_ann = 0
                     msg_with_madina = 0
-                    sleep(2)
+                    sleep(1)
                 
                 elif temp_stat == 'online' and tries < 60:
                     tries += 1
                     print(f'Online {tries}')
-                    sleep(2)
+                    sleep(1)
                 
         except Exception as err:
             print(f'Problem: {err}')
