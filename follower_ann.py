@@ -4,23 +4,23 @@ from time import sleep
 import vk_api
 
 flag = 0
-aim = 'naatik'
+aim = 'ann_mironovaa'
 temp_stat = 'offline'
 offset = timezone(timedelta(hours=3))
-session = vk_api.vk_api.VkApi(login='79150470373', password='Prytkov2002', token='c047b419c047b419c047b41999c03a1613cc047c047b419a2afe35905e31ee656da698e', auth_handler=None, captcha_handler=None, config_filename='vk_config.v2.json', api_version='5.81', app_id=8233482, scope=140492255, client_secret='7lLdyc7WoGU7OGu7Dz6p')
+session = vk_api.vk_api.VkApi(login='79150470373', password='Prytkov2002', token='vk1.a.RC3kRDxdWHyhN7upe_3SQzmGJ5Tj87O3JFMTkxbUxT5FlWTZcbIL-4jHbzkmbIRs2AOquKxiLbigOkH6gEY7absSRoqCPKtOSMPPcgQor_cg52bZmAFeSGFsgUrmEvz4CP5_0VAXF6ue-ZZqcTaq_PDkbL0_lvHuz4kZbdK-NDLtlu195q1D9uQoUr1mYDTi', auth_handler=None, captcha_handler=None, config_filename='vk_config.v2.json', api_version='5.81', app_id=8233482, scope=140492255, client_secret='kjeVZaP5ccju4xyykufn')
 
 
 def delete_msg(id):
-    requests.get(f"https://api.telegram.org/bot5505845559:AAFeuHYprGavV1ELhE-FO8jU6Yag5gFCfsE/deleteMessage?chat_id=394143446&message_id={id}")
+    requests.get(f"https://api.telegram.org/bot1226847744:AAHLU7TXkxe13r0LEwjeQ1dFUVk0kMB56Os/deleteMessage?chat_id=394143446&message_id={id}")
 
 def get_status(id):
     return session.method('users.get', values={'user_ids':id, 'fields':'online'})
 
 def pinned_msg(id):
-    requests.get(f"https://api.telegram.org/bot5505845559:AAFeuHYprGavV1ELhE-FO8jU6Yag5gFCfsE/pinChatMessage?chat_id=394143446&message_id={id}")
+    requests.get(f"https://api.telegram.org/bot1226847744:AAHLU7TXkxe13r0LEwjeQ1dFUVk0kMB56Os/pinChatMessage?chat_id=394143446&message_id={id}")
 
 def send_msg(message):
-    req = requests.post("https://api.telegram.org/bot5505845559:AAFeuHYprGavV1ELhE-FO8jU6Yag5gFCfsE/sendMessage?chat_id=394143446"+f"&text={message}")
+    req = requests.post("https://api.telegram.org/bot1226847744:AAHLU7TXkxe13r0LEwjeQ1dFUVk0kMB56Os/sendMessage?chat_id=394143446"+f"&text={message}")
     return req.json()['result']['message_id']
 
 def last_seen(id):
@@ -28,7 +28,7 @@ def last_seen(id):
 
 entrance_time = 0
 last_time = last_seen(aim)
-msg_counter = 220
+msg_counter = 0
 msg_counter_day = 0
 average_time = []
 tries = 0
@@ -38,14 +38,14 @@ while True:
             status = last_seen(aim)
             if status > last_time and temp_stat == 'offline':
                 entrance_time = status
-                deleted_id = send_msg('Наташа вошла в сеть')
+                deleted_id = send_msg('Аня вошла в сеть')
                 temp_stat = 'online'
                 print('Entrance')
                 last_time = status
                 sleep(1)
             if status > last_time and temp_stat == 'online':
                 msg_counter += 1
-                print(f'Natas message {msg_counter}')
+                print(f'Anns message {msg_counter}')
                 last_time = status
                 tries = 0
                 sleep(1)
@@ -81,13 +81,8 @@ while True:
                 
                 elif temp_stat == 'online' and tries < 120:
                     tries += 1
-                    print(f'Nata {tries}')
+                    print(f'Anna {tries}')
                     sleep(1)
                 
         except Exception as err:
             print(f'Problem: {err}')
-# 287286283 dasha
-# 472177450 dima
-# 52637246 nata
-
-
