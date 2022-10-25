@@ -40,12 +40,10 @@ while True:
                 entrance_time = status
                 deleted_id = send_msg('Мадина вошла в сеть')
                 temp_stat = 'online'
-                print('Entrance')
                 last_time = status
                 sleep(1)
             if status > last_time and temp_stat == 'online':
                 msg_counter += 1
-                print(f'Madins message {msg_counter}')
                 last_time = status
                 tries = 0
                 sleep(1)
@@ -71,7 +69,7 @@ while True:
                     delete_msg(deleted_id)
                     send_msg(msg)
 
-                    print(f'{datetime.now().date()} - Запись завершена')
+                    print(f'mad {datetime.now().date()} - Запись завершена')
 
                     tries = 0
                     if sess > 0: average_time.append(sess)
@@ -81,11 +79,10 @@ while True:
                 
                 elif temp_stat == 'online' and tries < 120:
                     tries += 1
-                    print(f'Madina {tries}')
                     sleep(1)
                 
         except Exception as err:
-            print(f'Problem: {err}')
+            print(f'Problem mad: {err}')
 # 287286283 dasha
 # 472177450 dima
 # 52637246 nata

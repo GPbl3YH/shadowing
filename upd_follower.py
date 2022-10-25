@@ -28,8 +28,8 @@ def last_seen(id):
 
 entrance_time = 0
 last_time = last_seen(aim)
-msg_counter = 220
-msg_counter_day = 0
+msg_counter = 0
+msg_counter_day = 223
 average_time = []
 tries = 0
 while True:
