@@ -50,7 +50,7 @@ while True:
 
             elif status == last_time:
                 if temp_stat == 'offline':
-                    if datetime.now(offset).hour == 4 and flag == 0 and len(average_time)!=0:
+                    if datetime.now(offset).hour == 3 and flag == 0 and len(average_time)!=0:
                         pinned_id = send_msg(f"Общее время в сети за {datetime.now(timezone(timedelta(hours=-2))).date()} = {sum(average_time)//60}:{sum(average_time)%60} mins\nСреднее время одного сеанса = {(sum(average_time)//len(average_time))//60}:{(sum(average_time)//len(average_time))%60} mins\n~Количество сообщений - {msg_counter_day}")
                         pinned_msg(pinned_id)
                         delete_msg(pinned_id+1)
@@ -58,7 +58,7 @@ while True:
                         average_time.clear()
                         flag = 1
 
-                    if datetime.now(offset).hour == 5 and flag == 1:
+                    if datetime.now(offset).hour == 4 and flag == 1:
                         flag = 0
                     sleep(1)
 
