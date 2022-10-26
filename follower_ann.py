@@ -7,7 +7,7 @@ flag = 0
 aim = 'ann_mironovaa'
 temp_stat = 'offline'
 offset = timezone(timedelta(hours=3))
-session = vk_api.vk_api.VkApi(login='79150470373', password='Prytkov2002', token='vk1.a.RC3kRDxdWHyhN7upe_3SQzmGJ5Tj87O3JFMTkxbUxT5FlWTZcbIL-4jHbzkmbIRs2AOquKxiLbigOkH6gEY7absSRoqCPKtOSMPPcgQor_cg52bZmAFeSGFsgUrmEvz4CP5_0VAXF6ue-ZZqcTaq_PDkbL0_lvHuz4kZbdK-NDLtlu195q1D9uQoUr1mYDTi', auth_handler=None, captcha_handler=None, config_filename='vk_config.v2.json', api_version='5.81', app_id=8233482, scope=140492255, client_secret='kjeVZaP5ccju4xyykufn')
+session = vk_api.vk_api.VkApi(login='79150470373', password='Prytkov2002', token='vk1.a.RC3kRDxdWHyhN7upe_3SQzmGJ5Tj87O3JFMTkxbUxT5FlWTZcbIL-4jHbzkmbIRs2AOquKxiLbigOkH6gEY7absSRoqCPKtOSMPPcgQor_cg52bZmAFeSGFsgUrmEvz4CP5_0VAXF6ue-ZZqcTaq_PDkbL0_lvHuz4kZbdK-NDLtlu195q1D9uQoUr1mYDTi', auth_handler=None, captcha_handler=None, config_filename='vk_config.v2.json', api_version='5.81', app_id=51458773, scope=140492255, client_secret='kjeVZaP5ccju4xyykufn')
 
 
 def delete_msg(id):
@@ -39,6 +39,7 @@ while True:
             if status > last_time and temp_stat == 'offline':
                 entrance_time = status
                 deleted_id = send_msg('Аня вошла в сеть')
+                print('Аня вошла в сеть')
                 temp_stat = 'online'
                 last_time = status
                 sleep(1)
